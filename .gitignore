@@ -1,0 +1,23 @@
+# Compilación y dependencias (Maven / Gradle)
+target/
+build/
+.gradle/
+*.jar
+*.war
+
+# IDEs y configuraciones locales
+.idea/
+*.iml
+.vscode/
+*.swp
+
+# Logs y temporales
+*.log
+*.tmp
+
+# Variables de entorno y credenciales
+.env
+*.env.local
+
+# Datos persistentes de Docker
+docker/data/
