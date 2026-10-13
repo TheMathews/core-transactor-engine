@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  oracle-db:
+    image: gvenzl/oracle-free:23-slim
+    container_name: core-oracle-db
+    restart: unless-stopped
+    ports:
+      - "1521:1521"
+    environment:
+      # Contraseña para SYS y SYSTEM
+      ORACLE_PASSWORD: "CoreEnginePassword2026#"
+      # Usuario de aplicación predeterminado
+      APP_USER: "CORE_APP"
+      APP_USER_PASSWORD: "CoreEnginePassword2026#"
+      # Nombre de la Pluggable Database (PDB)
+      ORACLE_DATABASE: "FREEPDB1"
+    volumes:
+      # Scripts DDL y PL/SQL que se ejecutarán automáticamente al iniciar por primera vez
+      - ./init-db:/container-entrypoint-initdb.d:ro
+      # Persistencia de datos en local
+      - oracle-data:/opt/oracle/oradata
+
+volumes:
+  oracle-data:
+    driver: local
